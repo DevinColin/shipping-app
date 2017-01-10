@@ -1,10 +1,23 @@
 class JobsController < ApplicationController
 
+	def index
+		@jobs = Job.all
+	end
+	def show
+		@job = Job.find(params[:id])
+	end
 	def new
-		
+		@job = Job.new
 	end
 	def create
-		Job.create(job_params)
+		@job = Job.new(job_params)
+		@job.complete = false
+		if @job.save
+			redirect_to { :action => 'show', :id => @job.id }
+		else
+			flash[:alert] = "Invalid job parameters"
+			redirect_to '/'
+		end
 	end
 	def edit
 		
@@ -12,20 +25,14 @@ class JobsController < ApplicationController
 	def update
 		
 	end
-	def index
-		
-	end
-	def show
-		
-	end
 	def destroy
-		
+		@job = Job.find(params[:id])
+		@job.destroy
 	end
 
 	private
-
-	def job_params
-		params.require(:user).permit(:description, :origin, :destination, :cost, :amount)
+		def job_params
+			params.require(:job).permit(:description, :origin, :destination, :cost, :amount)
+		end
 	end
-
 end
