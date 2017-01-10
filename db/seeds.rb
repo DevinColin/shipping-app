@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Seed users:
-# devin = User.new(email: "devin@shipping-app.com", password: "password", password_confirmation: "password")
-# devin.save!
+devin = User.new(email: "devin@shipping-app.com", password: "password", password_confirmation: "password")
+devin.save!
 
-# colin = User.new(email: "colin@shipping-app.com", password: "password", password_confirmation: "password")
-# colin.save!
+colin = User.new(email: "colin@shipping-app.com", password: "password", password_confirmation: "password")
+colin.save!
 
 # Syntax for exaxctly that which Devin found online:
 # user = User.new(
@@ -23,13 +23,13 @@
 # user.save!
 
 # Seed boats:
-# ports = ["Shanghai", "Singapore", "Shenzhen", "Hong Kong", "Ningbo-Zhoushan", "Busan", "Qingdao", "Guangzhou", "Jebel Ali (Dubai)", "Tianjin", "Rotterdam", "Port Klang", "Kaohsiung", "Dalian", "Hamburg", "Antwerp", "Xiamen", "Los Angeles", "Tanjung Pelepas", "Long Beach"]
-# (1..6).each do |i|
-# 	boat = Boat.new
-# 	boat.name = "S.S. " + Faker::TwinPeaks.character
-# 	boat.capacity = Random.rand(2..10) * 50
-# 	boat.cargo = 0
-# 	boat.location = ports.shuffle.first
-# 	boat.user_id = (i%2)+1
-# 	boat.save!
-# end
+ports = ["Shanghai", "Singapore", "Shenzhen", "Hong Kong", "Ningbo-Zhoushan", "Busan", "Qingdao", "Guangzhou", "Jebel Ali (Dubai)", "Tianjin", "Rotterdam", "Port Klang", "Kaohsiung", "Dalian", "Hamburg", "Antwerp", "Xiamen", "Los Angeles", "Tanjung Pelepas", "Long Beach"]
+(1..6).each do |i|
+	boat = Boat.new
+	boat.name = "S.S. " + Faker::TwinPeaks.character
+	boat.capacity = Random.rand(2..10) * 50
+	boat.cargo = 0
+	boat.location = ports.shuffle.first
+	boat.user_id = (i%2)+1
+	boat.save!
+end
