@@ -4,7 +4,7 @@ Here are your available commands:<br><br>
 
 <% if current_user %>
 
-  <%= form_for :boat do |b| %>
+  <%= form_for @boat, url: { action: "create", :controller => "boats" } do |b| %>
     <h4>CREATE A BOAT</h4>
     Boat Name: <%= b.text_field :name %><br>
     Capacity: <%= b.number_field :capacity %><br>
@@ -13,7 +13,7 @@ Here are your available commands:<br><br>
     <%= b.submit %>
   <% end %>
 
-  <%= form_for :job do |j| %>
+  <%= form_for @job, url: { action: "create", :controller => "jobs" } do |j| %>
     <h4>Create a Job</h4>
     Description: <%= j.text_field :description %><br>
     Origin: <%= j.number_field :origin %><br>
