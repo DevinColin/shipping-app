@@ -1,0 +1,30 @@
+Welcome to the shipping app.
+
+Here are your available commands:<br><br>
+
+<% if current_user %>
+
+  <%= form_for :boat do |b| %>
+    <h4>CREATE A BOAT</h4>
+    Boat Name: <%= b.text_field :name %><br>
+    Capacity: <%= b.number_field :capacity %><br>
+    Cargo: <%= b.number_field :cargo %><br>
+    Location: <%= b.text_field :location %><br>
+    <%= b.submit %>
+  <% end %>
+
+  <%= form_for :job do |j| %>
+    <h4>Create a Job</h4>
+    Description: <%= j.text_field :description %><br>
+    Origin: <%= j.number_field :origin %><br>
+    Destination: <%= j.number_field :destination %><br>
+    Cost: <%= j.text_field :cost %><br>
+    Amount: <%= j.text_field :amount %><br>
+    <%= j.submit %>
+  <% end %>
+
+<% end %>
+
+<% if !current_user %>
+  Please log in to create boats and jobs.
+<% end %>
