@@ -1,11 +1,11 @@
 <h2>Job #<%= @job.id %></h2>
 <h3>Created <%= @job.created_at %><% if @job.created_at != @job.updated_at %> (last updated <%= @job.updated_at %>)<% end %></h3>
-<p><%= @job.decription %></p>
+<p><%= @job.description %></p>
 <h3><%= @job.amount %> containers from <%= @job.origin %> to <%= @job.destination %></h3>
 <h3>Total charge: $<%= @job.cost %></h3>
-<% if job.boats %>
+<% if @job.boats.count > 0 %>
 	<h3>Has been assigned to:</h3>
-	<% job.boats.each do |boat| %>
+	<% @job.boats.each do |boat| %>
 		<p><%= link_to boat.name, boat %></p>
 	<% end %>
 <% else %>

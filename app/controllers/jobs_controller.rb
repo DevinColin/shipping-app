@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
 
 	def index
-		@newjobs = Job.where(complete: false).sort_by! { |k| k[updated_at:] }
+		@newjobs = Job.where(complete: false).reverse
 		@oldjobs = Job.where(complete: true).reverse
 	end
 	def show

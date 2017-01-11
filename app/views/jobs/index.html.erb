@@ -11,7 +11,7 @@
 	</tr>
 	<% @newjobs.each do |job| %>
 		<tr>
-			<td><%= job.id %></td>
+			<td><%= link_to job.id, job %></td>
 			<td><%= job.created_at %></td>
 			<td><%= job.origin %></td>
 			<td><%= job.destination %></td>
@@ -19,6 +19,7 @@
 			<td><%= job.amount %></td>
 			<td><% job.boats.each do |boat| %><%= boat.name %>\n<% end %></td>
 		</tr>
+	<% end %>
 </table>
 
 <h2>Completed jobs</h2>
@@ -42,4 +43,5 @@
 			<td><%= job.amount %></td>
 			<td><% job.boats.each do |boat| %><%= link_to boat.name boat %>\n<% end %></td>
 		</tr>
+	<% end %>
 </table>
