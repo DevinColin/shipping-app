@@ -17,7 +17,6 @@ class Job < ApplicationRecord
 
 
 	def origin_available
-	# ports = ["Shanghai", "Singapore", "Shenzhen", "Hong Kong", "Ningbo-Zhoushan", "Busan", "Qingdao", "Guangzhou", "Jebel Ali (Dubai)", "Tianjin", "Rotterdam", "Port Klang", "Kaohsiung", "Dalian", "Hamburg", "Antwerp", "Xiamen", "Los Angeles", "Tanjung Pelepas", "Long Beach"]
 		if !PORTS.find_index(origin)
 			errors.add(:origin, "We do not service this location")
 		end

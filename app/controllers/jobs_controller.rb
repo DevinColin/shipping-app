@@ -13,6 +13,7 @@ class JobsController < ApplicationController
 	def create
 		@job = Job.new(job_params)
 		@job.complete = false
+		@job.cost = @job.amount * 310
 		if @job.save
 			redirect_to job_path(@job.id)
 		else
@@ -40,7 +41,7 @@ class JobsController < ApplicationController
 	private
 
 		def job_params
-			params.require(:job).permit(:description, :origin, :destination, :amount)
+			params.require(:job).permit(:description, :origin, :destination, :cost, :amount)
 		end
 
 end
