@@ -1,5 +1,9 @@
 class BoatsController < ApplicationController
 
+  def index
+    @boats = Boat.find(:all, :order => "id desc", :limit => 10).reverse
+  end
+
   def show
     @boat = Boat.find(params[:id])
   end
@@ -9,8 +13,12 @@ class BoatsController < ApplicationController
   end
 
   def create
-    @boat = Boat.create(boat_params)
-    redirect_to boat_path(@boat.id)
+    @boat = Boat.new(boat_params)
+    if @boat.save
+      redirect_to boat_path(@boat.id)
+    else
+      redirect_to root_path
+    end
   end
 
   def update

@@ -1,6 +1,28 @@
-<% if @boat %>
-OMGGMO
-<% else %>
-These are not the boats you are looking for.
-<%= link_to root_path %>
+<h2>This boat has the following fields:</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Capacity</th>
+      <th>Cargo</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @boat.name %></td>
+      <td><%= @boat.capacity %></td>
+      <td><%= @boat.cargo %></td>
+      <td><%= @boat.location %></td>
+    </tr>
+    <tr>
+      <%= form_for @boat, url: { action: "update" } do |b| %>
+          <td></td>
+          <td><%= b.number_field :capacity %></td>
+          <td><%= b.number_field :cargo %></td>
+          <td><%= b.text_field :location %></td>
+    </tr>
+  </tbody>
+</table>
+<%= b.submit %>
 <% end %>
