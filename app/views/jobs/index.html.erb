@@ -1,8 +1,5 @@
 <h2>Unassigned jobs</h2>
-<% form_for @job do |f| %>
-	<%= f.select :job_id, @available_boats.all.collect { |b| [b.name, b.id], include_blank: true } %>
-	<%= f.submit "This is the one" %>
-<% end %>
+
 
 <%= form_for @job, :html => {class: "form-group"} do |j| %>
 <%= j.select(:boats, options_for_select([]), {}, { required: 'true', :class => "form-control" }) do %>
