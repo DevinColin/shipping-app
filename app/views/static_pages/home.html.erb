@@ -2,46 +2,64 @@ Welcome to the shipping app.
 
 Here are your available commands:<br><br>
 
+<% if @boat.errors.any? %>
+  <% @boat.errors.full_messages.each do |m| %>
+    <div class="text-danger">
+      <%= m %>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @job.errors.any? %>
+  <% @job.errors.full_messages.each do |m| %>
+    <div class="text-danger">
+      <%= m %>
+    </div>
+  <% end %>
+<% end %>
+
 <% if current_user %>
+  <div class="row">
+    <div class="col-md-6">
 
-  <%= form_for @boat, url: { action: "create", :controller => "boats" } do |b| %>
+      <%= form_for @boat, url: { action: "create", :controller => "boats" }, :html => {class: "form-group"} do |b| %>
+        <h4>CREATE A BOAT</h4>
+        Boat Name: <%= b.text_field :name, class: "form-control" %>
+        Capacity: <%= b.number_field :capacity, class: "form-control" %>
+        Cargo: <%= b.number_field :cargo, class: "form-control" %>
+        Location:
+        <%= b.select(:location, options_for_select([]), {}, { required: 'true', :class => "form-control" }) do %>
+          <% ["Shanghai", "Singapore", "Shenzhen", "Hong Kong", "Ningbo-Zhoushan", "Busan", "Qingdao", "Guangzhou", "Jebel Ali (Dubai)", "Tianjin", "Rotterdam", "Port Klang", "Kaohsiung", "Dalian", "Hamburg", "Antwerp", "Xiamen", "Los Angeles", "Tanjung Pelepas", "Long Beach"].each do |array|%>
+            <%= content_tag(:option, array) %>
+          <% end %>
+        <% end %>
+        <%= b.submit "Create boat", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class="col-md-6">
 
-  <% if @boat.errors.any? %>
-    <% @boat.errors.full_messages.each do |m| %>
-      <div class="text-danger">
-        <%= m %>
-      </div>
-    <% end %>
-  <% end %>
+      <%= form_for @job, url: { action: "create", :controller => "jobs" }, :html => {class: "form-group"} do |j| %>
+        <h4>Create a Job</h4>
+        Description: <%= j.text_area :description, class: "form-control" %>
+        Origin:
+        <%= j.select(:origin, options_for_select([]), {}, { required: 'true', :class => "form-control" }) do %>
+          <% ["Shanghai", "Singapore", "Shenzhen", "Hong Kong", "Ningbo-Zhoushan", "Busan", "Qingdao", "Guangzhou", "Jebel Ali (Dubai)", "Tianjin", "Rotterdam", "Port Klang", "Kaohsiung", "Dalian", "Hamburg", "Antwerp", "Xiamen", "Los Angeles", "Tanjung Pelepas", "Long Beach"].each do |array|%>
+            <%= content_tag(:option, array) %>
+          <% end %>
+        <% end %>
+        Destination:
+        <%= j.select(:destination, options_for_select([]), {}, { required: 'true', :class => "form-control" }) do %>
+          <% ["Shanghai", "Singapore", "Shenzhen", "Hong Kong", "Ningbo-Zhoushan", "Busan", "Qingdao", "Guangzhou", "Jebel Ali (Dubai)", "Tianjin", "Rotterdam", "Port Klang", "Kaohsiung", "Dalian", "Hamburg", "Antwerp", "Xiamen", "Los Angeles", "Tanjung Pelepas", "Long Beach"].each do |array|%>
+            <%= content_tag(:option, array) %>
+          <% end %>
+        <% end %>
+        Number of Containers: <%= j.number_field :amount, class: "form-control" %>
+        <%= j.submit "Create Job", class: "btn btn-primary"  %>
+      <% end %>
 
-    <h4>CREATE A BOAT</h4>
-    Boat Name: <%= b.text_field :name %><br>
-    Capacity: <%= b.number_field :capacity %><br>
-    Cargo: <%= b.number_field :cargo %><br>
-    Location: <%= b.text_field :location %><br>
-    <%= b.submit %>
-  <% end %>
+    </div>
 
-  <%= form_for @job, url: { action: "create", :controller => "jobs" } do |j| %>
-
-  <% if @job.errors.any? %>
-    <% @job.errors.full_messages.each do |m| %>
-      <div class="text-danger">
-        <%= m %>
-      </div>
-    <% end %>
-  <% end %>
-
-
-    <h4>Create a Job</h4>
-    Description: <%= j.text_area :description %><br>
-    Origin: <%= j.text_field :origin %><br>
-    Destination: <%= j.text_field :destination %><br>
-    Cost: <%= j.number_field :cost %><br>
-    Amount: <%= j.number_field :amount %><br>
-    <%= j.submit %>
-  <% end %>
-
+  </div>
 <% end %>
 
 <% if !current_user %>
