@@ -4,16 +4,19 @@ class JobsController < ApplicationController
 		@newjobs = Job.where(complete: false).reverse
 		@oldjobs = Job.where(complete: true).reverse
 	end
+
 	def show
 		@job = Job.find(params[:id])
 	end
+
 	def new
 		@job = Job.new
 	end
+
 	def create
 		@job = Job.new(job_params)
 		@job.complete = false
-		@job.cost = @job.amount * 310
+		@job.set_cost
 		if @job.save
 			redirect_to job_path(@job.id)
 		else
@@ -22,9 +25,11 @@ class JobsController < ApplicationController
 			render 'static_pages/home'
 		end
 	end
+
 	def edit
 		@job = Job.find(params[:id])
 	end
+
 	def update
 		@job = Job.find(params[:id])
 		if @job.update(job_params)
