@@ -15,7 +15,6 @@ class JobsController < ApplicationController
 
 	def create
 		@job = Job.new(job_params)
-		@job.complete = false
 		@job.set_cost
 		if @job.save
 			redirect_to job_path(@job.id)
