@@ -1,0 +1,45 @@
+<h2>Open jobs</h2>
+<table>
+	<tr>
+		<td><h3>Job number</h3></td>
+		<td><h3>Date created</h3></td>
+		<td><h3>Origin</h3></td>
+		<td><h3>Destination</h3></td>
+		<td><h3>Price</h3></td>
+		<td><h3>Number of Containers</h3></td>
+		<td>Boat(s) assigned</td>
+	</tr>
+	<% @newjobs.each do |job| %>
+		<tr>
+			<td><%= job.id %></td>
+			<td><%= job.created_at %></td>
+			<td><%= job.origin %></td>
+			<td><%= job.destination %></td>
+			<td><%= job.cost %></td>
+			<td><%= job.amount %></td>
+			<td><% job.boats.each do |boat| %><%= boat.name %>\n<% end %></td>
+		</tr>
+</table>
+
+<h2>Completed jobs</h2>
+<table>
+	<tr>
+		<td><h3>Job number</h3></td>
+		<td><h3>Date created</h3></td>
+		<td><h3>Origin</h3></td>
+		<td><h3>Destination</h3></td>
+		<td><h3>Price</h3></td>
+		<td><h3>Number of Containers</h3></td>
+		<td>Boat(s) assigned</td>
+	</tr>
+	<% @oldjobs.each do |job| %>
+		<tr>
+			<td><%= link_to job.id, job %></td>
+			<td><%= job.created_at %></td>
+			<td><%= job.origin %></td>
+			<td><%= job.destination %></td>
+			<td><%= job.cost %></td>
+			<td><%= job.amount %></td>
+			<td><% job.boats.each do |boat| %><%= link_to boat.name boat %>\n<% end %></td>
+		</tr>
+</table>
