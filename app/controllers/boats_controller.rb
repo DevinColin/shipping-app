@@ -1,7 +1,7 @@
 class BoatsController < ApplicationController
 
   def index
-    @boats = Boat.find(:all, :order => "id desc", :limit => 10).reverse
+    @boats = Boat.all
   end
 
   def show
