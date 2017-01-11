@@ -5,6 +5,15 @@ Here are your available commands:<br><br>
 <% if current_user %>
 
   <%= form_for @boat, url: { action: "create", :controller => "boats" } do |b| %>
+
+  <% if @boat.errors.any? %>
+    <% @boat.errors.full_messages.each do |m| %>
+      <div class="text-danger">
+        <%= m %>
+      </div>
+    <% end %>
+  <% end %>
+
     <h4>CREATE A BOAT</h4>
     Boat Name: <%= b.text_field :name %><br>
     Capacity: <%= b.number_field :capacity %><br>
@@ -14,6 +23,16 @@ Here are your available commands:<br><br>
   <% end %>
 
   <%= form_for @job, url: { action: "create", :controller => "jobs" } do |j| %>
+
+  <% if @job.errors.any? %>
+    <% @job.errors.full_messages.each do |m| %>
+      <div class="text-danger">
+        <%= m %>
+      </div>
+    <% end %>
+  <% end %>
+
+
     <h4>Create a Job</h4>
     Description: <%= j.text_area :description %><br>
     Origin: <%= j.text_field :origin %><br>

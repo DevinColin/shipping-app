@@ -17,7 +17,8 @@ class JobsController < ApplicationController
 			redirect_to job_path(@job.id)
 		else
 			flash[:alert] = "Invalid job parameters"
-			redirect_to '/'
+			@boat = Boat.new
+			render 'static_pages/home'
 		end
 	end
 	def edit

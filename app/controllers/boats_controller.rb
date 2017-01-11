@@ -17,7 +17,8 @@ class BoatsController < ApplicationController
     if @boat.save
       redirect_to boat_path(@boat.id)
     else
-      redirect_to root_path
+      @job = Job.new
+      render 'static_pages/home'
     end
   end
 
