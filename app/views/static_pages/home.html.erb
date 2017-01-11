@@ -15,11 +15,11 @@ Here are your available commands:<br><br>
 
   <%= form_for @job, url: { action: "create", :controller => "jobs" } do |j| %>
     <h4>Create a Job</h4>
-    Description: <%= j.text_field :description %><br>
-    Origin: <%= j.number_field :origin %><br>
-    Destination: <%= j.number_field :destination %><br>
-    Cost: <%= j.text_field :cost %><br>
-    Amount: <%= j.text_field :amount %><br>
+    Description: <%= j.text_area :description %><br>
+    Origin: <%= j.text_field :origin %><br>
+    Destination: <%= j.text_field :destination %><br>
+    Cost: <%= j.number_field :cost %><br>
+    Amount: <%= j.number_field :amount %><br>
     <%= j.submit %>
   <% end %>
 
