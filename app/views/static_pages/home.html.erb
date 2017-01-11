@@ -1,6 +1,11 @@
+<% if current_user %>
+  <%= image_tag current_user.avatar.url %><br>
+<% end %>
+
 Welcome to the shipping app.
 
 Here are your available commands:<br><br>
+
 
 <% if @boat.errors.any? %>
   <% @boat.errors.full_messages.each do |m| %>

@@ -1,8 +1,28 @@
 class JobsController < ApplicationController
 
 	def index
-		@newjobs = Job.where(complete: false).reverse
-		@oldjobs = Job.where(complete: true).reverse
+		@job = Job.new
+		@unassigned_jobs = []
+		@assigned_jobs = []
+		activeJobsArray = Job.where(complete: false).reverse
+		activeJobsArray.each do |j|
+			if j.boats.count == 0
+				@unassigned_jobs.push(j)
+			else
+				@assigned_jobs.push(j)
+			end
+		end
+
+		all_boats = Boat.all
+		@available_boats =[]
+		all_boats.each do |boat|
+			total = boat.capacity - boat.cargo
+			if total > 4
+				@available_boats.push(boat)
+			end
+		end
+
+		@old_jobs = Job.where(complete: true).reverse
 	end
 
 	def show
@@ -37,6 +57,7 @@ class JobsController < ApplicationController
 			render action: 'edit'
 		end
 	end
+	
 	def destroy
 		@job = Job.find(params[:id])
 		@job.destroy
