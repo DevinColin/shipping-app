@@ -27,6 +27,11 @@ class BoatsController < ApplicationController
   end
 
   def update
+    @boat = Boat.find(params[:id])
+    if !@boat.update(update_params)
+      flash[:alert] = "Invalid entry"
+    end
+    redirect_to "/boats/#{params[:id]}"
   end
 
   def destroy
@@ -36,6 +41,9 @@ class BoatsController < ApplicationController
 
     def boat_params
       params.require(:boat).permit(:name, :capacity, :cargo, :location)
+    end
+    def update_params
+      params.require(:boat).permit(:capacity, :cargo, :location)
     end
 
 end

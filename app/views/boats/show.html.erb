@@ -1,11 +1,6 @@
 <h2><%= @boat.name %></h2>
 <% if @boat.avatar_file_name %>
   <%= image_tag @boat.avatar.url %>
-<% else %>
-  <%= form_for @boat do |f| %>
-    <%= f.label "Upload an image" %>
-    <%= f.file_field :avatar %>
-  <% end %>
 <% end %>
 
 <h3>This boat has the following fields:</h3>
@@ -31,7 +26,8 @@
           <input type="hidden" name="name" value="<%= @boat.name %>">
           <td><%= b.number_field :capacity %></td>
           <td><%= b.number_field :cargo %></td>
-          <td><%= b.select(:location, options_for_select([]), {}, { required: 'true', :class => "form-control" }) do %>
+          <td><%= b.select(:location, options_for_select([]), {}, { :class => "form-control" }) do %>
+            <option value="<%= @boat.location %>"></option>
             <% ports.each do |array|%>
               <%= content_tag(:option, array) %>
             <% end %>
@@ -39,5 +35,9 @@
     </tr>
   </tbody>
 </table>
+          <% if !@boat.avatar_file_name %>
+            <%= b.label "Upload an image" %>
+            <%= b.file_field :avatar %>
+          <% end %>
           <%= b.submit %>
       <% end %>
