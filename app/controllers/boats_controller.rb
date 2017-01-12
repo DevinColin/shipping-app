@@ -43,7 +43,7 @@ class BoatsController < ApplicationController
       params.require(:boat).permit(:name, :capacity, :cargo, :location)
     end
     def update_params
-      params.require(:boat).permit(:capacity, :cargo, :location)
+      params.require(:boat).permit(:capacity, :cargo, :location, :avatar)
     end
 
 end

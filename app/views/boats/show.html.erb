@@ -35,9 +35,7 @@
     </tr>
   </tbody>
 </table>
-          <% if !@boat.avatar_file_name %>
-            <%= b.label "Upload an image" %>
-            <%= b.file_field :avatar %>
-          <% end %>
+          <%= b.label "Upload an image" %>
+          <%= b.file_field :avatar %>
           <%= b.submit %>
       <% end %>
