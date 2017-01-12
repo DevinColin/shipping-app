@@ -12,7 +12,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Boats", boats_path %></li>
+        <li><%= link_to "Boats", boats_path, data: { turbolinks: false } %></li>
         <li><%= link_to "Jobs", jobs_path, data: { turbolinks: false } %></li>
         <% if current_user %>
           <li><%= link_to "log out",destroy_user_session_path, :method => :delete %></li>

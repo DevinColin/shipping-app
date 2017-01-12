@@ -9,7 +9,7 @@
   </thead>
   <tbody>
     <% @boats.each do |b| %>
-    <tr>
+    <tr class="clickable-row", data-href="<%= boat_path(b) %>">
         <td><%= b.name %></td>
         <td><%= b.capacity %></td>
         <td><%= b.cargo %></td>

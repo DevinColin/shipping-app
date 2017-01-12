@@ -1,0 +1,37 @@
+<% if current_user %>
+  <%= content_tag :h4, "Recently Updated Jobs" %>
+  <%= content_tag :div, :class => "well" do %>
+    <%= content_tag :div, :class => "row" do %>
+      <%= content_tag :div, :class => "col-sm-6" do %>
+        <% @jobs.each_with_index do |j, index| %>
+          <% if index % 2 == 0 %>
+            <%= content_tag(:div, :class => "panel panel-success") do %>
+              <%= content_tag(:div, :class => "panel-heading") do %>
+                <%= content_tag(:span, number_to_currency(j.cost), :class => "pull-right") %>
+                <%= content_tag(:span, j.origin) %>
+                <%= content_tag(:span, "to") %>
+                <%= content_tag(:span, j.destination) %>
+              <% end %>
+              <%= content_tag(:div, j.description, :class => "panel-body") %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <%= content_tag :div, :class => "col-sm-6" do %>
+        <% @jobs.each_with_index do |j, index| %>
+          <% if index % 2 != 0 %>
+            <%= content_tag(:div, :class => "panel panel-success") do %>
+              <%= content_tag(:div, :class => "panel-heading") do %>
+                <%= content_tag(:span, number_to_currency(j.cost), :class => "pull-right") %>
+                <%= content_tag(:span, j.origin) %>
+                <%= content_tag(:span, "to") %>
+                <%= content_tag(:span, j.destination) %>
+              <% end %>
+              <%= content_tag(:div, j.description, :class => "panel-body") %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
