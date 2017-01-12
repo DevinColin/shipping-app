@@ -1,0 +1,14 @@
+<%= form_for @job do |f| %>
+    <%= f.select(:boats,
+    options_from_collection_for_select(@boats, :id, :name), {}, {multiple: true}) %>
+    <%= f.submit %>
+<% end %>
+
+<%= form_for job, url: job_path(job.id), :html => {class: "form-group", method: :put, :multiple => true} do |j| %>
+			<%= j.select(:boats, @available_boats,{}, {:multiple => true}) do %>
+				<% @available_boats.each do |b| %>
+					<%= content_tag(:option, b.name, value: b.id) %>
+				<% end %>
+			<% end %>
+	<%= j.submit "Assign Boat", class: "btn btn-primary" %>
+<% end %>

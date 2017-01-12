@@ -8,11 +8,11 @@
 PORTS = ["Shanghai", "Singapore", "Shenzhen", "Hong Kong", "Ningbo-Zhoushan", "Busan", "Qingdao", "Guangzhou", "Jebel Ali (Dubai)", "Tianjin", "Rotterdam", "Port Klang", "Kaohsiung", "Dalian", "Hamburg", "Antwerp", "Xiamen", "Los Angeles", "Tanjung Pelepas", "Long Beach"]
 
 # Seed users:
-devin = User.new(email: "devin@shipping-app.com", password: "password", password_confirmation: "password")
-devin.save!
+# devin = User.new(email: "devin@shipping-app.com", password: "password", password_confirmation: "password")
+# devin.save!
 
-colin = User.new(email: "colin@shipping-app.com", password: "password", password_confirmation: "password")
-colin.save!
+# colin = User.new(email: "colin@shipping-app.com", password: "password", password_confirmation: "password")
+# colin.save!
 
 # Syntax for exaxctly that which Devin found online:
 # user = User.new(

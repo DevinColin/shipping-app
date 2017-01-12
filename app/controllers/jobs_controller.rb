@@ -35,7 +35,6 @@ class JobsController < ApplicationController
 
 	def create
 		@job = Job.new(job_params)
-		@job.complete = false
 		@job.set_cost
 		if @job.save
 			redirect_to job_path(@job.id)
@@ -52,22 +51,36 @@ class JobsController < ApplicationController
 
 	def update
 		@job = Job.find(params[:id])
-		if @job.update(job_params)
-			redirect_to action: 'show', id: @job.id
+
+		if job_params[:boats]
+			job_params[:boats].each do |b|
+				if b != ""
+					boat = Boat.find(b)
+					@job.boats.push(boat)
+				end
+			end
+		elsif @job.update(job_params)
 		else
 			render action: 'edit'
 		end
+		redirect_to action: 'show', id: @job.id
 	end
-	
+
 	def destroy
 		@job = Job.find(params[:id])
 		@job.destroy
 	end
 
+	def mark_as_complete
+		job = Job.find(params[:id])
+		job.complete = true
+		job.save 
+	end
+
 	private
 
 		def job_params
-			params.require(:job).permit(:description, :origin, :destination, :cost, :amount)
+			params.require(:job).permit(:description, :origin, :destination, :cost, :amount, :boats => [])
 		end
 
 end
