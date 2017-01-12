@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+PORTS = ["Shanghai", "Singapore", "Shenzhen", "Hong Kong", "Ningbo-Zhoushan", "Busan", "Qingdao", "Guangzhou", "Jebel Ali (Dubai)", "Tianjin", "Rotterdam", "Port Klang", "Kaohsiung", "Dalian", "Hamburg", "Antwerp", "Xiamen", "Los Angeles", "Tanjung Pelepas", "Long Beach"]
 
 # Seed users:
 devin = User.new(email: "devin@shipping-app.com", password: "password", password_confirmation: "password")
@@ -22,14 +23,30 @@ colin.save!
 # user.skip_confirmation!
 # user.save!
 
+# Seed Job
+(1..20).each do |i|
+	job = Job.new
+	description = ""
+	8.times do
+	  description += Faker::StarWars.quote
+	  description += " "
+	end
+	job.description = description
+	number = rand(0..19)
+	job.origin = PORTS[number]
+	job.destination = PORTS[number + 8]
+	job.save
+end
+
+
 # Seed boats:
-ports = ["Shanghai", "Singapore", "Shenzhen", "Hong Kong", "Ningbo-Zhoushan", "Busan", "Qingdao", "Guangzhou", "Jebel Ali (Dubai)", "Tianjin", "Rotterdam", "Port Klang", "Kaohsiung", "Dalian", "Hamburg", "Antwerp", "Xiamen", "Los Angeles", "Tanjung Pelepas", "Long Beach"]
+
 (1..6).each do |i|
 	boat = Boat.new
 	boat.name = "S.S. " + Faker::TwinPeaks.character
 	boat.capacity = Random.rand(2..10) * 50
 	boat.cargo = 0
-	boat.location = ports.shuffle.first
+	boat.location = PORTS.shuffle.first
 	boat.user_id = (i%2)+1
 	boat.save!
 end
