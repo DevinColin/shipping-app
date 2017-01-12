@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
 
 	def index
-		@job = Job.new
+		# @job = Job.new
 		@unassigned_jobs = []
 		@assigned_jobs = []
 		activeJobsArray = Job.where(complete: false).reverse
@@ -10,15 +10,6 @@ class JobsController < ApplicationController
 				@unassigned_jobs.push(j)
 			else
 				@assigned_jobs.push(j)
-			end
-		end
-
-		all_boats = Boat.all
-		@available_boats =[]
-		all_boats.each do |boat|
-			total = boat.capacity - boat.cargo
-			if total > 4
-				@available_boats.push(boat)
 			end
 		end
 
