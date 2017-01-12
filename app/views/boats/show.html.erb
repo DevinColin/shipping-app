@@ -1,4 +1,14 @@
-<h2>This boat has the following fields:</h2>
+<h2><%= @boat.name %></h2>
+<% if @boat.avatar_file_name %>
+  <%= image_tag @boat.avatar.url %>
+<% else %>
+  <%= form_for @boat do |f| %>
+    <%= f.label "Upload an image" %>
+    <%= f.file_field :avatar %>
+  <% end %>
+<% end %>
+
+<h3>This boat has the following fields:</h3>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -16,13 +26,18 @@
       <td><%= @boat.location %></td>
     </tr>
     <tr>
-      <%= form_for @boat, url: { action: "update" } do |b| %>
+      <%= form_for @boat, url: { action: "update", controller: "boats" } do |b| %>
           <td></td>
+          <input type="hidden" name="name" value="<%= @boat.name %>">
           <td><%= b.number_field :capacity %></td>
           <td><%= b.number_field :cargo %></td>
-          <td><%= b.text_field :location %></td>
+          <td><%= b.select(:location, options_for_select([]), {}, { required: 'true', :class => "form-control" }) do %>
+            <% ports.each do |array|%>
+              <%= content_tag(:option, array) %>
+            <% end %>
+          <% end %></td>
     </tr>
   </tbody>
 </table>
-<%= b.submit %>
-<% end %>
+          <%= b.submit %>
+      <% end %>
