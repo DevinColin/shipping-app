@@ -15,3 +15,14 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+
+    $(".job-incomplete").on("ajax:complete", function(event) {
+      $(event.target).attr('class', "job-complete");
+      $(event.target).html('Processing Completion');
+    });
+});
