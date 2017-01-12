@@ -1,0 +1,51 @@
+<h2>Open jobs</h2>
+<div class="row">
+	<div class="col-sm-10">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Job number</th>
+					<th>Date created</th>
+					<th>Origin</th>
+					<th>Destination</th>
+					<th>Price</th>
+					<th>Number of Containers</th>
+					<th>Boat(s) assigned</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @assigned_jobs.each do |job| %>
+					<tr class="clickable-row", data-href="<%= job_path(job.id) %>">
+							<td><%= job.id %></td>
+							<td><%= job.created_at %></td>
+							<td><%= job.origin %></td>
+							<td><%= job.destination %></td>
+							<td><%= job.cost %></td>
+							<td><%= job.amount %></td>
+							<td><% job.boats.each do |boat| %><%= boat.name %>\n<% end %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-sm-2">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Job Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @assigned_jobs.each do |job| %>
+					<tr >
+						<td><%= link_to "Mark Complete",
+                    job_complete_path(job),
+                    remote: :true,
+                    class: "job-incomplete" %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+
+</div>

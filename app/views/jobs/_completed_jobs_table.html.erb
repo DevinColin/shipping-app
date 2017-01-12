@@ -1,0 +1,26 @@
+<h2>Completed jobs</h2>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Job number</th>
+			<th>Date created</th>
+			<th>Origin</th>
+			<th>Destination</th>
+			<th>Price</th>
+			<th>Number of Containers</th>
+			<th>Boat(s) assigned</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @old_jobs.each do |job| %>
+			<tr>
+				<td><%= link_to job.id, job %></td>
+				<td><%= job.created_at %></td>
+				<td><%= job.origin %></td>
+				<td><%= job.destination %></td>
+				<td><%= job.cost %></td>
+				<td><%= job.amount %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
