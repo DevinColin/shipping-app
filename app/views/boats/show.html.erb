@@ -38,4 +38,7 @@
           <%= b.label "Upload an image" %>
           <%= b.file_field :avatar %>
           <%= b.submit %>
-      <% end %>
+      <% end -%>
+<%= link_to @model, :confirm =>"Are you sure?", :method => :delete do %>
+  <button type="button">Delete boat</button>
+<% end %>
