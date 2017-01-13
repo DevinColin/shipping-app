@@ -7,10 +7,12 @@
           <% if index % 2 == 0 %>
             <%= content_tag(:div, :class => "panel panel-success") do %>
               <%= content_tag(:div, :class => "panel-heading") do %>
+              <%= link_to j do %>
                 <%= content_tag(:span, number_to_currency(j.cost), :class => "pull-right") %>
                 <%= content_tag(:span, j.origin) %>
                 <%= content_tag(:span, "to") %>
                 <%= content_tag(:span, j.destination) %>
+              <% end %>
               <% end %>
               <%= content_tag(:div, j.description, :class => "panel-body") %>
             <% end %>
@@ -22,10 +24,12 @@
           <% if index % 2 != 0 %>
             <%= content_tag(:div, :class => "panel panel-success") do %>
               <%= content_tag(:div, :class => "panel-heading") do %>
+              <%= link_to j do %>
                 <%= content_tag(:span, number_to_currency(j.cost), :class => "pull-right") %>
                 <%= content_tag(:span, j.origin) %>
                 <%= content_tag(:span, "to") %>
                 <%= content_tag(:span, j.destination) %>
+              <% end %>
               <% end %>
               <%= content_tag(:div, j.description, :class => "panel-body") %>
             <% end %>
