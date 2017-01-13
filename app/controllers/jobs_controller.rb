@@ -65,6 +65,11 @@ class JobsController < ApplicationController
 	def mark_as_complete
 		job = Job.find(params[:id])
 		job.complete = true
+		assigned_boats = job.boats
+		assigned_boats.each do |b|
+			b.location = job.destination
+			b.save!
+		end
 		job.save 
 	end
 
