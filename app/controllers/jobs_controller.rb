@@ -48,6 +48,8 @@ class JobsController < ApplicationController
 				if b != ""
 					boat = Boat.find(b)
 					@job.boats.push(boat)
+					boat.cargo += @job.amount
+					boat.save!
 				end
 			end
 		elsif @job.update(job_params)
